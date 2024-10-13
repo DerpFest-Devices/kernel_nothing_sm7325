@@ -1725,7 +1725,7 @@ int path_umount(struct path *path, int flags)
 
 SYSCALL_DEFINE2(umount, char __user *, name, int, flags)
 {
-	return ksys_umount(name, flags);
+	return can_umount(name, flags);
 }
 
 #ifdef __ARCH_WANT_SYS_OLDUMOUNT
@@ -1735,7 +1735,7 @@ SYSCALL_DEFINE2(umount, char __user *, name, int, flags)
  */
 SYSCALL_DEFINE1(oldumount, char __user *, name)
 {
-	return ksys_umount(name, 0);
+	return can_umount(name, 0);
 }
 
 #endif
